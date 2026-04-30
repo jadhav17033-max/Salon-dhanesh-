@@ -5,50 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shringar Salon</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
 
-body{
-background:linear-gradient(135deg,#1a1a1a,#2c2c2c);
-color:white;
-}
+body{background:#0f0f0f;color:#fff;overflow-x:hidden}
 
-/* HERO */
+/* VIDEO HERO */
 .hero{
+position:relative;
 height:100vh;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7)),
-url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9');
-background-size:cover;
-background-position:center;
 }
 
-.hero h1{
-font-size:45px;
-margin-bottom:10px;
+.hero video{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
 }
 
-.hero p{
-opacity:0.8;
-margin-bottom:20px;
+.hero-content{
+background:rgba(0,0,0,0.6);
+padding:30px;
+border-radius:15px;
 }
 
-/* BUTTON */
 .btn{
 background:linear-gradient(45deg,#ff4e8a,#ff9eb5);
 padding:12px 25px;
@@ -60,49 +49,80 @@ margin:5px;
 transition:0.3s;
 }
 
-.btn:hover{
-transform:scale(1.1);
+.btn:hover{transform:scale(1.1);}
+
+/* SECTION */
+.section{
+padding:50px 20px;
+max-width:1100px;
+margin:auto;
 }
 
 /* GLASS CARD */
-.section{
-padding:40px 20px;
-}
-
 .card{
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(10px);
 padding:20px;
-margin-bottom:20px;
+margin-bottom:15px;
 border-radius:15px;
 transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-}
+.card:hover{transform:translateY(-5px);}
 
 /* SERVICES */
 .details{
 display:none;
 margin-top:10px;
-opacity:0.8;
+color:#ccc;
 }
 
 /* PRODUCTS */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
 .product{
-margin-top:15px;
+background:#1a1a1a;
 padding:15px;
-background:#111;
+border-radius:12px;
+text-align:center;
+}
+
+.product img{
+width:100%;
 border-radius:10px;
+}
+
+/* FORM */
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+}
+
+/* FLOATING WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:20px;
+text-decoration:none;
 }
 
 /* FOOTER */
 footer{
-text-align:center;
-padding:20px;
 background:#000;
-margin-top:30px;
+padding:20px;
+text-align:center;
 }
 
 </style>
@@ -110,32 +130,41 @@ margin-top:30px;
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
-<h1>Shringar Salon 💄</h1>
-<p>Luxury Beauty Experience for Women</p>
 
-<a href="https://wa.me/918650125290?text=Hello%20I%20want%20to%20book%20appointment" target="_blank">
-<button class="btn">Book on WhatsApp</button>
+<video autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-woman-getting-her-hair-done-5175/1080p.mp4">
+</video>
+
+<div class="hero-content">
+<h1>Shringar Salon 💄</h1>
+<p>Luxury Beauty Experience</p>
+
+<a href="https://wa.me/918650125290?text=Hello%20I%20want%20appointment">
+<button class="btn">Book Now</button>
 </a>
 
-<button class="btn" onclick="scrollToSection()">Explore Services</button>
+</div>
 </div>
 
-<div class="section" id="services">
+<!-- SERVICES -->
+<div class="section">
+
+<h2>Our Services</h2>
 
 <div class="card">
-<h2>Hair Services</h2>
+<h3>Hair Services</h3>
 <button class="btn" onclick="toggle(this)">View</button>
 <div class="details">
 <p>Haircut & Styling - ₹899</p>
 <p>Hair Wash & Blow Dry - ₹599</p>
 <p>Hair Coloring - ₹299</p>
-<p>Not Available: Chemical Treatments</p>
 </div>
 </div>
 
 <div class="card">
-<h2>Skin & Face</h2>
+<h3>Skin & Face</h3>
 <button class="btn" onclick="toggle(this)">View</button>
 <div class="details">
 <p>Threading & Waxing - ₹499</p>
@@ -144,58 +173,58 @@ margin-top:30px;
 </div>
 
 <div class="card">
-<h2>Hand & Foot Care</h2>
-<button class="btn" onclick="toggle(this)">View</button>
-<div class="details">
-<p>Full Care - ₹1000</p>
-</div>
+<h3>Hand & Foot Care - ₹1000</h3>
 </div>
 
 <div class="card">
-<h2>Grooming</h2>
-<button class="btn" onclick="toggle(this)">View</button>
-<div class="details">
-<p>Special Grooming - ₹699</p>
-</div>
+<h3>Grooming - ₹699</h3>
 </div>
 
 </div>
 
+<!-- BOOKING -->
 <div class="section">
 <h2>Book Appointment</h2>
 
 <form onsubmit="book(event)">
-<input type="text" placeholder="Your Name" required style="width:100%;padding:10px;margin:5px 0;"><br>
-<input type="date" required style="width:100%;padding:10px;margin:5px 0;"><br>
-<input type="time" required style="width:100%;padding:10px;margin:5px 0;"><br>
+<input type="text" placeholder="Your Name" required>
+<input type="date" required>
+<input type="time" required>
 
-<select style="width:100%;padding:10px;margin:5px 0;">
+<select>
 <option>Haircut</option>
 <option>Facial</option>
 <option>Waxing</option>
-</select><br>
+</select>
 
-<button class="btn">Book Now</button>
+<button class="btn">Confirm Booking</button>
 </form>
 </div>
 
+<!-- PRODUCTS -->
 <div class="section">
 <h2>Products</h2>
 
+<div class="grid">
+
 <div class="product">
-<h3>Hair Serum</h3>
+<img src="https://via.placeholder.com/200">
+<h4>Hair Serum</h4>
 <p>₹499</p>
-<button class="btn" onclick="pay()">Buy Now</button>
+<button class="btn" onclick="pay()">Buy</button>
 </div>
 
 <div class="product">
-<h3>Face Cream</h3>
+<img src="https://via.placeholder.com/200">
+<h4>Face Cream</h4>
 <p>₹299</p>
-<button class="btn" onclick="pay()">Buy Now</button>
+<button class="btn" onclick="pay()">Buy</button>
 </div>
 
 </div>
+</div>
 
+<!-- QR -->
 <div class="section">
 <h2>Scan & Pay</h2>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8650125290@upi&pn=ShringarSalon">
@@ -206,6 +235,9 @@ margin-top:30px;
 <p>Follow us on Instagram</p>
 </footer>
 
+<!-- FLOAT BUTTON -->
+<a class="whatsapp" href="https://wa.me/918650125290">💬</a>
+
 <script>
 
 function toggle(btn){
@@ -213,13 +245,9 @@ let d = btn.nextElementSibling;
 d.style.display = d.style.display === "block" ? "none" : "block";
 }
 
-function scrollToSection(){
-document.getElementById("services").scrollIntoView({behavior:"smooth"});
-}
-
 function book(e){
 e.preventDefault();
-alert("Appointment Booked!");
+alert("Booking Confirmed!");
 }
 
 function pay(){
@@ -229,12 +257,11 @@ var options = {
 "currency": "INR",
 "name": "Shringar Salon",
 "description": "Payment",
-"handler": function (){
+handler: function (){
 alert("Payment Successful");
 }
 };
-var rzp = new Razorpay(options);
-rzp.open();
+new Razorpay(options).open();
 }
 
 </script>
