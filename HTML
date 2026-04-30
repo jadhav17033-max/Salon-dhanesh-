@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shringar Salon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:Poppins;
+background:#fff;
+}
+
+header{
+background:linear-gradient(135deg,#ff4e8a,#ff9eb5);
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.hero{
+text-align:center;
+padding:30px;
+}
+
+.btn{
+background:#ff4e8a;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin:5px;
+}
+
+.section{
+padding:20px;
+}
+
+.box{
+background:#f9f9f9;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.details{
+display:none;
+margin-top:10px;
+}
+
+.product{
+border:1px solid #ddd;
+padding:10px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+footer{
+background:#333;
+color:white;
+text-align:center;
+padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Shringar Ladies Salon 💄</h1>
+</header>
+
+<div class="hero">
+<h2>Enhance Your Beauty</h2>
+
+<a href="https://wa.me/918650125290?text=Hello%20Shringar%20Salon%20I%20want%20to%20book%20appointment" target="_blank">
+<button class="btn">Book on WhatsApp</button>
+</a>
+
+<a href="https://instagram.com/" target="_blank">
+<button class="btn">Instagram</button>
+</a>
+
+</div>
+
+<div class="section">
+
+<div class="box">
+<h3>Hair Services</h3>
+<button class="btn" onclick="toggle(this)">View</button>
+<div class="details">
+<p>Haircut & Styling - ₹899</p>
+<p>Hair Wash & Blow Dry - ₹599</p>
+<p>Hair Coloring - ₹299</p>
+<p>Chemical Treatments - NOT AVAILABLE</p>
+</div>
+</div>
+
+<div class="box">
+<h3>Skin & Face</h3>
+<button class="btn" onclick="toggle(this)">View</button>
+<div class="details">
+<p>Threading & Waxing - ₹499</p>
+<p>Bleach & De-tan - ₹199</p>
+</div>
+</div>
+
+<div class="box">
+<h3>Hand & Foot Care</h3>
+<button class="btn" onclick="toggle(this)">View</button>
+<div class="details">
+<p>Package - ₹1000</p>
+</div>
+</div>
+
+<div class="box">
+<h3>Grooming</h3>
+<button class="btn" onclick="toggle(this)">View</button>
+<div class="details">
+<p>Special Grooming - ₹699</p>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Book Appointment</h2>
+
+<form onsubmit="book(event)">
+<input type="text" placeholder="Your Name" required><br><br>
+<input type="date" required><br><br>
+<input type="time" required><br><br>
+
+<select>
+<option>Haircut</option>
+<option>Facial</option>
+<option>Waxing</option>
+</select><br><br>
+
+<button class="btn">Book Now</button>
+</form>
+</div>
+
+<div class="section">
+<h2>Products 🛍️</h2>
+
+<div class="product">
+<h4>Hair Serum</h4>
+<p>₹499</p>
+<button class="btn" onclick="pay()">Buy</button>
+</div>
+
+<div class="product">
+<h4>Face Cream</h4>
+<p>₹299</p>
+<button class="btn" onclick="pay()">Buy</button>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Scan & Pay</h2>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8650125290@upi&pn=ShringarSalon">
+</div>
+
+<footer>
+<p>📍 Roorkee, New Adarsh Shivaji Nagar, D Block</p>
+</footer>
+
+<script>
+
+function toggle(btn){
+let d = btn.nextElementSibling;
+d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+function book(e){
+e.preventDefault();
+alert("Appointment Booked! We will contact you.");
+}
+
+function pay(){
+
+var options = {
+"key": "YOUR_RAZORPAY_KEY",
+"amount": "50000",
+"currency": "INR",
+"name": "Shringar Salon",
+"description": "Payment",
+"handler": function (){
+alert("Payment Successful");
+}
+};
+
+var rzp = new Razorpay(options);
+rzp.open();
+}
+
+</script>
+
+</body>
+</html>
